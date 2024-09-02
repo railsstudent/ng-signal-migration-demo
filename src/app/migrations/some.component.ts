@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, map } from 'rxjs';
 
@@ -7,11 +7,12 @@ import { BehaviorSubject, map } from 'rxjs';
   selector: 'app-some',
   standalone: true,
   imports: [AsyncPipe, FormsModule],
-  template: `
+  
+    template: `
     <h2>Use Input and Output decorators</h2>
     <div>
-      <p>bgColor: {{ bgColor }}</p>
-      <p>name: {{ name }}</p>
+      <p>bgColor: {{ bgColor() }}</p>
+      <p>name: {{ name() }}</p>
       <p>num: {{ numSub.getValue() }}</p>
       <p>double: {{ double$ | async }}</p>
       <div>
@@ -25,12 +26,11 @@ import { BehaviorSubject, map } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SomeComponent {
-  @Input({ required: true, alias: 'backgroundColor'}) bgColor!: string; 
-  @Input({ transform: (x: string) => x.toLocaleUpperCase() }) name: string = 'input decorator';
+  bgColor = input.required<string>({ alias: 'backgroundColor' }); 
+  name = input<any, string | string>('input decorator', { transform: (x: string) => x.toLocaleUpperCase() });
 
   // input setter
   @Input({ required: true }) set num(newValue: number) {
-    console.log('newValue', newValue);
     this.numSub.next(newValue);
   }
 
@@ -38,5 +38,5 @@ export class SomeComponent {
   @Output('cube') powerX3 = new EventEmitter<number>();
 
   numSub = new BehaviorSubject<number>(2);
-  double$ = this.numSub.pipe(map((n) => n * 2)); 
+  double$ = this.numSub.pipe(map((n) => n * 2));
 }
