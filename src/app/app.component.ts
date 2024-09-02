@@ -7,7 +7,7 @@ import { QueriesComponent } from './migrations/queries.component';
   standalone: true,
   imports: [SomeComponent, QueriesComponent],
   template: `
-    <app-some [backgroundColor]="color" [name]="name" [num]="20" 
+    <app-some [backgroundColor]="color" [name]="name"
       (triple)="tripleValue = $event" (cube)="cubeValue = $event" (double)="doubleValue = $event" />
     <p>Tripe: {{ tripleValue }}, Cube: {{ cubeValue }} Double: {{ doubleValue }}</p>
     <app-queries>

@@ -28,11 +28,6 @@ export class SomeComponent {
   @Input({ required: true, alias: 'backgroundColor'}) bgColor!: string; 
   @Input({ transform: (x: string) => x.toLocaleUpperCase() }) name: string = 'input decorator';
 
-  // input setter
-  @Input({ required: true }) set num(newValue: number) {
-    this.numSub.next(newValue);
-  }
-
   @Output() triple = new EventEmitter<number>();
   @Output('cube') powerXBy3 = new EventEmitter<number>();
 
