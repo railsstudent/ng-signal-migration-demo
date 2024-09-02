@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, map } from 'rxjs';
 
@@ -17,6 +17,7 @@ import { BehaviorSubject, map } from 'rxjs';
       <div>
         Num: <input type="number" [ngModel]="numSub.getValue()" (ngModelChange)="numSub.next($event)" />
       </div>
+      <button (click)="triple.emit(numSub.getValue() * 3)" >Show triple in the parent</button>
     </div>
   `,
   styles: ``,
@@ -31,6 +32,8 @@ export class SomeComponent {
     console.log('newValue', newValue);
     this.numSub.next(newValue);
   }
+
+  @Output() triple = new EventEmitter<number>();
 
   numSub = new BehaviorSubject<number>(2);
   double$ = this.numSub.pipe(map((n) => n * 2)); 
