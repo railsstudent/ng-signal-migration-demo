@@ -30,11 +30,6 @@ export class SomeComponent {
   bgColor = input.required<string>({ alias: 'backgroundColor' }); 
   name = input<any, string | string>('input decorator', { transform: (x: string) => x.toLocaleUpperCase() });
 
-  // input setter
-  @Input({ required: true }) set num(newValue: number) {
-    this.numSub.next(newValue);
-  }
-
   triple = output<number>();
   powerX3 = output<number>({ alias: 'cube' });
 
