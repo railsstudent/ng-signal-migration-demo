@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, map } from 'rxjs';
@@ -7,7 +6,7 @@ import { outputFromObservable } from "@angular/core/rxjs-interop";
 @Component({
   selector: 'app-some',
   standalone: true,
-  imports: [AsyncPipe, FormsModule],
+  imports: [FormsModule],
   
     template: `
     <h2>Use Input and Output decorators</h2>
@@ -15,7 +14,6 @@ import { outputFromObservable } from "@angular/core/rxjs-interop";
       <p>bgColor: {{ bgColor() }}</p>
       <p>name: {{ name() }}</p>
       <p>num: {{ numSub.getValue() }}</p>
-      <p>double: {{ double$ | async }}</p>
       <div>
         Num: <input type="number" [ngModel]="numSub.getValue()" (ngModelChange)="numSub.next($event)" />
       </div>
@@ -34,7 +32,5 @@ export class SomeComponent {
   powerX3 = output<number>({ alias: 'cube' });
 
   numSub = new BehaviorSubject<number>(2);
-  double$ = this.numSub.pipe(map((n) => n * 2));
-
   double = outputFromObservable(this.numSub.pipe(map((n) => n * 2)));
 }
