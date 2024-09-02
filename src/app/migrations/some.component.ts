@@ -30,7 +30,6 @@ export class SomeComponent {
 
   // input setter
   @Input({ required: true }) set num(newValue: number) {
-    console.log('newValue', newValue);
     this.numSub.next(newValue);
   }
 
