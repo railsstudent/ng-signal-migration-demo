@@ -8,7 +8,7 @@ import { BehaviorSubject, map } from 'rxjs';
   standalone: true,
   imports: [AsyncPipe, FormsModule],
   template: `
-    <p>Use Input and Output decorators</p>
+    <h2>Use Input and Output decorators</h2>
     <div>
       <p>bgColor: {{ bgColor }}</p>
       <p>name: {{ name }}</p>

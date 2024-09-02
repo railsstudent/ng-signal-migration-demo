@@ -5,13 +5,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <p>
-      queries works!
-    </p>
+    <h2>ViewChild, ContentChild, ContentChildren</h2>
+    <p>queries works!</p>
+    <ng-content select="[header]" />
+    <ng-content />
   `,
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QueriesComponent {
-
+  name = 'ViewChild, ContentChild, ContentChildren';
 }
