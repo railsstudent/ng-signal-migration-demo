@@ -1,7 +1,8 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, input, Output, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, map } from 'rxjs';
+import { outputFromObservable } from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-some',
@@ -40,5 +41,5 @@ export class SomeComponent {
   numSub = new BehaviorSubject<number>(2);
   double$ = this.numSub.pipe(map((n) => n * 2));
 
-  @Output() double = this.numSub.pipe(map((n) => n * 2));
+  double = outputFromObservable(this.numSub.pipe(map((n) => n * 2)));
 }
