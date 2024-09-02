@@ -22,7 +22,6 @@ import { outputFromObservable } from "@angular/core/rxjs-interop";
       <button (click)="powerX3.emit(n * n * n)" >Show cube in the parent</button>
     </div>
   `,
-  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SomeComponent {
