@@ -7,8 +7,7 @@ import { outputFromObservable } from "@angular/core/rxjs-interop";
   selector: 'app-some',
   standalone: true,
   imports: [FormsModule],
-  
-    template: `
+  template: `
     <h2>Use Input and Output decorators</h2>
     <div>
       <p>bgColor: {{ bgColor() }}</p>
