@@ -8,8 +8,8 @@ import { QueriesComponent } from './migrations/queries.component';
   imports: [SomeComponent, QueriesComponent],
   template: `
     <app-some [backgroundColor]="color" [name]="name" [num]="20" 
-      (triple)="tripleValue = $event" (cube)="cubeValue = $event" />
-    <p>Tripe: {{ tripleValue }}, Cube: {{ cubeValue }}</p>
+      (triple)="tripleValue = $event" (cube)="cubeValue = $event" (double)="doubleValue = $event" />
+    <p>Tripe: {{ tripleValue }}, Cube: {{ cubeValue }}, Double: {{ doubleValue }}</p>
     <app-queries>
       <div #header header>My Header</div>
       <p #p>Paragraph 1</p>
@@ -39,6 +39,7 @@ export class AppComponent implements AfterViewInit {
 
   tripleValue = 0;
   cubeValue = 0;
+  doubleValue = 0;
 
   queries = viewChild(QueriesComponent);
   aComponents = viewChildren<QueriesComponent[]>('a');
