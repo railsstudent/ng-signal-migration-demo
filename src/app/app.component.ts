@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild, ViewChildren } from '@angular/core';
 import { SomeComponent } from './migrations/some.component';
 import { QueriesComponent } from './migrations/queries.component';
 
@@ -7,8 +7,9 @@ import { QueriesComponent } from './migrations/queries.component';
   standalone: true,
   imports: [SomeComponent, QueriesComponent],
   template: `
-    <app-some [backgroundColor]="color" [name]="name" [num]="20" (triple)="tripleValue = $event" />
-    <p>Tripe: {{ tripleValue }}</p>
+    <app-some [backgroundColor]="color" [name]="name" [num]="20" 
+      (triple)="tripleValue = $event" (cube)="cubeValue = $event" />
+    <p>Tripe: {{ tripleValue }}, Cube: {{ cubeValue }}</p>
     <app-queries>
       <div #header header>My Header</div>
       <p #p>Paragraph 1</p>
@@ -37,6 +38,7 @@ export class AppComponent implements AfterViewInit {
   name = 'Hello World!!!!';
 
   tripleValue = 0;
+  cubeValue = 0;
 
   @ViewChild(QueriesComponent) queries!: QueriesComponent;
   @ViewChildren('a') aComponents!: QueriesComponent[];

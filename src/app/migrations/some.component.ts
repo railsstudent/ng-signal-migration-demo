@@ -18,6 +18,7 @@ import { BehaviorSubject, map } from 'rxjs';
         Num: <input type="number" [ngModel]="numSub.getValue()" (ngModelChange)="numSub.next($event)" />
       </div>
       <button (click)="triple.emit(numSub.getValue() * 3)" >Show triple in the parent</button>
+      <button (click)="powerX3.emit(numSub.getValue() * numSub.getValue() * numSub.getValue())" >Show cube in the parent</button>
     </div>
   `,
   styles: ``,
@@ -34,6 +35,7 @@ export class SomeComponent {
   }
 
   @Output() triple = new EventEmitter<number>();
+  @Output('cube') powerX3 = new EventEmitter<number>();
 
   numSub = new BehaviorSubject<number>(2);
   double$ = this.numSub.pipe(map((n) => n * 2)); 
