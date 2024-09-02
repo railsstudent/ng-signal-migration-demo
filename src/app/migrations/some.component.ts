@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject, map } from 'rxjs';
 
@@ -34,8 +34,8 @@ export class SomeComponent {
     this.numSub.next(newValue);
   }
 
-  @Output() triple = new EventEmitter<number>();
-  @Output('cube') powerX3 = new EventEmitter<number>();
+  triple = output<number>();
+  powerX3 = output<number>({ alias: 'cube' });
 
   numSub = new BehaviorSubject<number>(2);
   double$ = this.numSub.pipe(map((n) => n * 2));
