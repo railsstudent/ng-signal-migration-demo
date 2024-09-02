@@ -13,12 +13,13 @@ import { outputFromObservable } from "@angular/core/rxjs-interop";
     <div>
       <p>bgColor: {{ bgColor() }}</p>
       <p>name: {{ name() }}</p>
-      <p>num: {{ numSub.getValue() }}</p>
+      @let n = numSub.getValue();
+      <p>num: {{ n }}</p>
       <div>
-        Num: <input type="number" [ngModel]="numSub.getValue()" (ngModelChange)="numSub.next($event)" />
+        Num: <input type="number" [ngModel]="n" (ngModelChange)="numSub.next($event)" />
       </div>
-      <button (click)="triple.emit(numSub.getValue() * 3)" >Show triple in the parent</button>
-      <button (click)="powerX3.emit(numSub.getValue() * numSub.getValue() * numSub.getValue())" >Show cube in the parent</button>
+      <button (click)="triple.emit(n * 3)" >Show triple in the parent</button>
+      <button (click)="powerX3.emit(n * n * n)" >Show cube in the parent</button>
     </div>
   `,
   styles: ``,
